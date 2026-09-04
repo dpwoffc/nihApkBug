@@ -1,0 +1,2317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>GOD PANEL</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+    --bg:#050608;
+    --glass:rgba(255,255,255,.055);
+    --glass2:rgba(255,255,255,.085);
+    --border:rgba(255,255,255,.11);
+    --text:#f5f5f7;
+    --muted:#858891;
+    --accent:#ffffff;
+    --danger:#ff4d67;
+    --success:#4dff9a;
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
+    background:var(--bg);
+    color:var(--text);
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+body{
+    overflow-x:hidden;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.bg{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:-5;
+    background:
+        radial-gradient(circle at 20% 10%,rgba(255,255,255,.06),transparent 30%),
+        radial-gradient(circle at 80% 80%,rgba(255,255,255,.045),transparent 35%),
+        #050608;
+}
+
+.blob{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(80px);
+    opacity:.18;
+    animation:float 12s ease-in-out infinite alternate;
+}
+
+.blob.one{
+    width:220px;
+    height:220px;
+    background:#777;
+    left:-80px;
+    top:80px;
+}
+
+.blob.two{
+    width:280px;
+    height:280px;
+    background:#aaa;
+    right:-120px;
+    top:35%;
+    animation-delay:2s;
+}
+
+.blob.three{
+    width:190px;
+    height:190px;
+    background:#555;
+    left:25%;
+    bottom:-80px;
+    animation-delay:4s;
+}
+
+@keyframes float{
+    from{
+        transform:translate3d(0,0,0) scale(1);
+    }
+    to{
+        transform:translate3d(30px,-35px,0) scale(1.15);
+    }
+}
+
+/* =========================
+   GLASS
+========================= */
+
+.glass{
+    background:linear-gradient(
+        135deg,
+        rgba(255,255,255,.075),
+        rgba(255,255,255,.025)
+    );
+    border:1px solid var(--border);
+    backdrop-filter:blur(25px);
+    -webkit-backdrop-filter:blur(25px);
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.35),
+        inset 0 1px rgba(255,255,255,.05);
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+#loginPage{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.login-card{
+    width:100%;
+    max-width:390px;
+    border-radius:30px;
+    padding:28px 22px;
+    animation:loginIn .7s ease;
+}
+
+@keyframes loginIn{
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.96);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+.logo{
+    width:70px;
+    height:70px;
+    border-radius:22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 18px;
+    font-size:30px;
+    font-weight:900;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.13);
+    box-shadow:
+        0 0 35px rgba(255,255,255,.08),
+        inset 0 1px rgba(255,255,255,.1);
+}
+
+.login-title{
+    text-align:center;
+    font-size:25px;
+    font-weight:800;
+    letter-spacing:-.7px;
+}
+
+.login-sub{
+    text-align:center;
+    color:var(--muted);
+    margin-top:6px;
+    font-size:13px;
+    margin-bottom:25px;
+}
+
+.input-group{
+    margin-bottom:15px;
+}
+
+.input-group label{
+    display:block;
+    font-size:12px;
+    color:var(--muted);
+    margin-bottom:7px;
+}
+
+.input{
+    width:100%;
+    height:52px;
+    border-radius:16px;
+    border:1px solid var(--border);
+    outline:none;
+    padding:0 15px;
+    background:rgba(0,0,0,.22);
+    color:white;
+    font-size:14px;
+    transition:.25s;
+}
+
+.input:focus{
+    border-color:rgba(255,255,255,.35);
+    box-shadow:0 0 0 4px rgba(255,255,255,.04);
+}
+
+.btn{
+    border:0;
+    outline:none;
+    cursor:pointer;
+    color:#050608;
+    background:#fff;
+    font-weight:800;
+    border-radius:16px;
+    height:52px;
+    transition:.25s;
+    width:100%;
+}
+
+.btn:active{
+    transform:scale(.97);
+}
+
+.btn:hover{
+    box-shadow:0 8px 30px rgba(255,255,255,.12);
+}
+
+.login-error{
+    display:none;
+    margin-bottom:12px;
+    padding:11px;
+    border-radius:13px;
+    background:rgba(255,77,103,.1);
+    border:1px solid rgba(255,77,103,.2);
+    color:#ff8294;
+    font-size:12px;
+    text-align:center;
+}
+
+/* =========================
+   APP
+========================= */
+
+#app{
+    display:none;
+    min-height:100vh;
+    padding-bottom:85px;
+}
+
+.container{
+    width:100%;
+    max-width:650px;
+    margin:auto;
+    padding:18px 15px;
+}
+
+/* =========================
+   TOP BAR
+========================= */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:22px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.brand-icon{
+    width:42px;
+    height:42px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+    background:rgba(255,255,255,.07);
+    border:1px solid var(--border);
+}
+
+.brand-name{
+    font-size:15px;
+    font-weight:800;
+}
+
+.brand-role{
+    font-size:10px;
+    color:var(--muted);
+    margin-top:2px;
+}
+
+.avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    background:linear-gradient(
+        145deg,
+        rgba(255,255,255,.16),
+        rgba(255,255,255,.04)
+    );
+    border:1px solid var(--border);
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.page{
+    display:none;
+    animation:pageIn .35s ease;
+}
+
+.page.active{
+    display:block;
+}
+
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:translateY(8px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+.hero{
+    padding:22px;
+    border-radius:26px;
+    margin-bottom:14px;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero:after{
+    content:"";
+    position:absolute;
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    right:-50px;
+    top:-60px;
+    background:rgba(255,255,255,.08);
+    filter:blur(20px);
+}
+
+.hero small{
+    color:var(--muted);
+    font-size:11px;
+}
+
+.hero h1{
+    margin-top:5px;
+    font-size:27px;
+    letter-spacing:-1px;
+}
+
+.hero p{
+    margin-top:7px;
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-bottom:14px;
+}
+
+.stat{
+    padding:17px;
+    border-radius:21px;
+}
+
+.stat-label{
+    font-size:11px;
+    color:var(--muted);
+}
+
+.stat-value{
+    font-size:21px;
+    font-weight:800;
+    margin-top:7px;
+}
+
+.status{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    color:#a6ffcc;
+}
+
+.dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--success);
+    box-shadow:0 0 10px var(--success);
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section-title{
+    font-size:13px;
+    font-weight:800;
+    margin:21px 2px 10px;
+}
+
+.card{
+    border-radius:24px;
+    padding:18px;
+    margin-bottom:12px;
+}
+
+/* =========================
+   TARGET FLOW
+========================= */
+
+.step{
+    display:none;
+    animation:stepIn .3s ease;
+}
+
+.step.active{
+    display:block;
+}
+
+@keyframes stepIn{
+    from{
+        opacity:0;
+        transform:translateX(10px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+.step-head{
+    display:flex;
+    gap:11px;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.step-number{
+    width:31px;
+    height:31px;
+    border-radius:11px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.1);
+    font-size:12px;
+    font-weight:900;
+}
+
+.step-title{
+    font-size:14px;
+    font-weight:800;
+}
+
+.step-desc{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:2px;
+}
+
+.phone-wrap{
+    display:flex;
+    gap:8px;
+}
+
+.country{
+    width:68px;
+    height:52px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.045);
+    border:1px solid var(--border);
+    color:var(--muted);
+    font-size:13px;
+    font-weight:700;
+}
+
+.phone-input{
+    flex:1;
+}
+
+.next-btn{
+    margin-top:12px;
+}
+
+/* =========================
+   METHODS
+========================= */
+
+.methods{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.method{
+    padding:16px 13px;
+    border-radius:19px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.035);
+    cursor:pointer;
+    transition:.25s;
+}
+
+.method:active{
+    transform:scale(.96);
+}
+
+.method.selected{
+    background:rgba(255,255,255,.11);
+    border-color:rgba(255,255,255,.4);
+    box-shadow:
+        0 0 25px rgba(255,255,255,.06),
+        inset 0 1px rgba(255,255,255,.08);
+}
+
+.method-icon{
+    font-size:21px;
+    margin-bottom:10px;
+}
+
+.method-name{
+    font-size:12px;
+    font-weight:800;
+}
+
+.method-desc{
+    color:var(--muted);
+    font-size:9px;
+    margin-top:4px;
+    line-height:1.4;
+}
+
+.selected-target{
+    margin-top:14px;
+    padding:12px;
+    border-radius:14px;
+    background:rgba(0,0,0,.2);
+    font-size:11px;
+    color:var(--muted);
+}
+
+.selected-target b{
+    color:white;
+}
+
+.back-btn{
+    background:rgba(255,255,255,.06);
+    color:white;
+    border:1px solid var(--border);
+    margin-top:9px;
+}
+
+/* =========================
+   ACTIVITY
+========================= */
+
+.activity{
+    display:flex;
+    gap:11px;
+    align-items:flex-start;
+    padding:13px 0;
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.activity:last-child{
+    border-bottom:0;
+}
+
+.activity-icon{
+    width:34px;
+    height:34px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.06);
+    flex:none;
+}
+
+.activity-main{
+    flex:1;
+}
+
+.activity-title{
+    font-size:12px;
+    font-weight:700;
+}
+
+.activity-time{
+    font-size:10px;
+    color:var(--muted);
+    margin-top:3px;
+}
+
+/* =========================
+   SETTINGS
+========================= */
+
+.setting{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 0;
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.setting:last-child{
+    border-bottom:0;
+}
+
+.setting-title{
+    font-size:12px;
+    font-weight:700;
+}
+
+.setting-desc{
+    font-size:10px;
+    color:var(--muted);
+    margin-top:3px;
+}
+
+.badge{
+    padding:7px 10px;
+    border-radius:10px;
+    background:rgba(255,255,255,.07);
+    border:1px solid var(--border);
+    font-size:10px;
+    font-weight:700;
+}
+
+.logout{
+    color:#ff8294;
+    cursor:pointer;
+}
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav{
+    position:fixed;
+    left:50%;
+    bottom:13px;
+    transform:translateX(-50%);
+    width:calc(100% - 24px);
+    max-width:620px;
+    height:64px;
+    border-radius:23px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    padding:5px;
+    z-index:50;
+}
+
+.nav-btn{
+    border:0;
+    background:transparent;
+    color:#666a73;
+    border-radius:18px;
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:3px;
+    transition:.25s;
+}
+
+.nav-btn.active{
+    background:rgba(255,255,255,.09);
+    color:white;
+}
+
+.nav-icon{
+    font-size:17px;
+}
+
+.nav-label{
+    font-size:9px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal-bg{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+    z-index:100;
+}
+
+.modal-bg.show{
+    display:flex;
+    animation:modalBg .25s ease;
+}
+
+@keyframes modalBg{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+.modal{
+    width:100%;
+    max-width:650px;
+    border-radius:30px 30px 0 0;
+    padding:22px 18px 28px;
+    animation:modalUp .35s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes modalUp{
+    from{
+        transform:translateY(100%);
+    }
+    to{
+        transform:none;
+    }
+}
+
+.modal-handle{
+    width:38px;
+    height:4px;
+    border-radius:20px;
+    background:rgba(255,255,255,.2);
+    margin:0 auto 22px;
+}
+
+.process-top{
+    text-align:center;
+}
+
+.process-circle{
+    width:72px;
+    height:72px;
+    border-radius:50%;
+    margin:0 auto 15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:27px;
+    background:rgba(255,255,255,.07);
+    border:1px solid var(--border);
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        box-shadow:0 0 0 0 rgba(255,255,255,.06);
+    }
+    50%{
+        box-shadow:0 0 0 15px rgba(255,255,255,0);
+    }
+}
+
+.process-title{
+    font-size:19px;
+    font-weight:800;
+}
+
+.process-status{
+    font-size:11px;
+    color:var(--muted);
+    margin-top:5px;
+}
+
+.progress-wrap{
+    margin-top:22px;
+}
+
+.progress-info{
+    display:flex;
+    justify-content:space-between;
+    font-size:10px;
+    color:var(--muted);
+    margin-bottom:8px;
+}
+
+.progress{
+    height:8px;
+    width:100%;
+    border-radius:20px;
+    overflow:hidden;
+    background:rgba(255,255,255,.07);
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    border-radius:20px;
+    background:white;
+    transition:width .25s ease;
+}
+
+.process-info{
+    margin-top:15px;
+    padding:13px;
+    border-radius:16px;
+    background:rgba(0,0,0,.2);
+}
+
+.process-row{
+    display:flex;
+    justify-content:space-between;
+    padding:5px 0;
+    font-size:11px;
+}
+
+.process-row span{
+    color:var(--muted);
+}
+
+.process-row b{
+    font-weight:700;
+}
+
+.close-modal{
+    margin-top:15px;
+    background:rgba(255,255,255,.06);
+    color:white;
+    border:1px solid var(--border);
+}
+
+.close-modal.disabled{
+    opacity:.35;
+    pointer-events:none;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+    top:18px;
+    left:50%;
+    transform:translateX(-50%) translateY(-20px);
+    background:rgba(20,20,22,.88);
+    border:1px solid var(--border);
+    backdrop-filter:blur(20px);
+    padding:11px 15px;
+    border-radius:14px;
+    font-size:11px;
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:200;
+    white-space:nowrap;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media(min-width:700px){
+
+    .container{
+        padding-top:28px;
+    }
+
+    .modal-bg{
+        align-items:center;
+    }
+
+    .modal{
+        border-radius:30px;
+        max-width:470px;
+    }
+
+    .bottom-nav{
+        bottom:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+    <div class="blob three"></div>
+</div>
+
+<!-- =========================
+     LOGIN
+========================= -->
+
+<section id="loginPage">
+
+    <div class="login-card glass">
+
+        <div class="logo">G</div>
+
+        <div class="login-title">
+            GOD PANEL
+        </div>
+
+        <div class="login-sub">
+            Secure control interface
+        </div>
+
+        <div id="loginError" class="login-error">
+            Username atau password salah.
+        </div>
+
+        <div class="input-group">
+            <label>USERNAME</label>
+            <input
+                id="username"
+                class="input"
+                type="text"
+                placeholder="Username"
+                autocomplete="off"
+            >
+        </div>
+
+        <div class="input-group">
+            <label>PASSWORD</label>
+            <input
+                id="password"
+                class="input"
+                type="password"
+                placeholder="Password"
+            >
+        </div>
+
+        <button class="btn" onclick="login()">
+            LOGIN
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     APP
+========================= -->
+
+<section id="app">
+
+<div class="container">
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                G
+            </div>
+
+            <div>
+                <div class="brand-name">
+                    GOD PANEL
+                </div>
+
+                <div class="brand-role">
+                    ADMIN • GOD
+                </div>
+            </div>
+
+        </div>
+
+        <div class="avatar">
+            G
+        </div>
+
+    </div>
+
+
+    <!-- =====================
+         HOME
+    ====================== -->
+
+    <div id="homePage" class="page active">
+
+        <div class="hero glass">
+
+            <small>WELCOME BACK</small>
+
+            <h1>
+                Hello, Admin.
+            </h1>
+
+            <p>
+                Semua sistem siap digunakan.
+            </p>
+
+        </div>
+
+
+        <div class="stats">
+
+            <div class="stat glass">
+
+                <div class="stat-label">
+                    ACCOUNT
+                </div>
+
+                <div class="stat-value">
+                    GOD
+                </div>
+
+            </div>
+
+
+            <div class="stat glass">
+
+                <div class="stat-label">
+                    EXPIRED
+                </div>
+
+                <div class="stat-value">
+                    UNLIMITED
+                </div>
+
+            </div>
+
+
+            <div class="stat glass">
+
+                <div class="stat-label">
+                    GLOBAL SENDER
+                </div>
+
+                <div class="stat-value">
+                    10
+                </div>
+
+            </div>
+
+
+            <div class="stat glass">
+
+                <div class="stat-label">
+                    STATUS
+                </div>
+
+                <div class="stat-value status">
+
+                    <span class="dot"></span>
+
+                    ONLINE
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="section-title">
+            SYSTEM
+        </div>
+
+        <div class="card glass">
+
+            <div class="setting">
+
+                <div>
+                    <div class="setting-title">
+                        Panel Status
+                    </div>
+
+                    <div class="setting-desc">
+                        Control interface aktif
+                    </div>
+                </div>
+
+                <div class="badge">
+                    ONLINE
+                </div>
+
+            </div>
+
+
+            <div class="setting">
+
+                <div>
+                    <div class="setting-title">
+                        Sender Capacity
+                    </div>
+
+                    <div class="setting-desc">
+                        Global sender aktif
+                    </div>
+                </div>
+
+                <div class="badge">
+                    10
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================
+         TARGET
+    ====================== -->
+
+    <div id="targetPage" class="page">
+
+        <div class="hero glass">
+
+            <small>TARGET CONTROL</small>
+
+            <h1>
+                Send Process
+            </h1>
+
+            <p>
+                Masukkan target lalu pilih metode.
+            </p>
+
+        </div>
+
+
+        <div class="card glass">
+
+            <!-- STEP 1 -->
+
+            <div id="step1" class="step active">
+
+                <div class="step-head">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <div>
+                        <div class="step-title">
+                            Input Nomor
+                        </div>
+
+                        <div class="step-desc">
+                            Masukkan nomor dengan format Indonesia
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="phone-wrap">
+
+                    <div class="country">
+                        +62
+                    </div>
+
+                    <input
+                        id="phone"
+                        class="input phone-input"
+                        type="tel"
+                        inputmode="numeric"
+                        placeholder="812xxxxxxxx"
+                        maxlength="15"
+                    >
+
+                </div>
+
+
+                <button
+                    class="btn next-btn"
+                    onclick="nextStep()"
+                >
+                    NEXT
+                </button>
+
+            </div>
+
+
+            <!-- STEP 2 -->
+
+            <div id="step2" class="step">
+
+                <div class="step-head">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <div>
+                        <div class="step-title">
+                            Pilih Metode
+                        </div>
+
+                        <div class="step-desc">
+                            Pilih salah satu metode proses
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="methods">
+
+                    <div
+                        class="method"
+                        onclick="selectMethod(this,'Hard Delay')"
+                    >
+
+                        <div class="method-icon">
+                            ⏱
+                        </div>
+
+                        <div class="method-name">
+                            Hard Delay
+                        </div>
+
+                        <div class="method-desc">
+                            Simulasi proses dengan delay.
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="method"
+                        onclick="selectMethod(this,'Invisible')"
+                    >
+
+                        <div class="method-icon">
+                            ◌
+                        </div>
+
+                        <div class="method-name">
+                            Invisible
+                        </div>
+
+                        <div class="method-desc">
+                            Simulasi proses invisible.
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="method"
+                        onclick="selectMethod(this,'Force Close')"
+                    >
+
+                        <div class="method-icon">
+                            ×
+                        </div>
+
+                        <div class="method-name">
+                            Force Close
+                        </div>
+
+                        <div class="method-desc">
+                            Simulasi force close.
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="method"
+                        onclick="selectMethod(this,'Blank')"
+                    >
+
+                        <div class="method-icon">
+                            □
+                        </div>
+
+                        <div class="method-name">
+                            Blank
+                        </div>
+
+                        <div class="method-desc">
+                            Simulasi blank process.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="selected-target">
+
+                    TARGET:
+                    <b id="targetPreview">
+                        -
+                    </b>
+
+                </div>
+
+
+                <button
+                    id="sendBtn"
+                    class="btn"
+                    style="margin-top:12px"
+                    onclick="startProcess()"
+                >
+                    START / SEND
+                </button>
+
+
+                <button
+                    class="btn back-btn"
+                    onclick="backStep()"
+                >
+                    BACK
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================
+         ACTIVITY
+    ====================== -->
+
+    <div id="activityPage" class="page">
+
+        <div class="hero glass">
+
+            <small>ACTIVITY</small>
+
+            <h1>
+                Activity Log
+            </h1>
+
+            <p>
+                Riwayat aktivitas panel.
+            </p>
+
+        </div>
+
+
+        <div class="card glass" id="activityList">
+
+            <div class="activity">
+
+                <div class="activity-icon">
+                    ✓
+                </div>
+
+                <div class="activity-main">
+
+                    <div class="activity-title">
+                        Panel initialized
+                    </div>
+
+                    <div class="activity-time">
+                        Just now
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="activity">
+
+                <div class="activity-icon">
+                    ◉
+                </div>
+
+                <div class="activity-main">
+
+                    <div class="activity-title">
+                        Admin logged in
+                    </div>
+
+                    <div class="activity-time">
+                        Just now
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================
+         SETTINGS
+    ====================== -->
+
+    <div id="settingsPage" class="page">
+
+        <div class="hero glass">
+
+            <small>SETTINGS</small>
+
+            <h1>
+                Configuration
+            </h1>
+
+            <p>
+                Informasi konfigurasi akun.
+            </p>
+
+        </div>
+
+
+        <div class="card glass">
+
+            <div class="setting">
+
+                <div>
+
+                    <div class="setting-title">
+                        Username
+                    </div>
+
+                    <div class="setting-desc">
+                        Current account
+                    </div>
+
+                </div>
+
+                <div class="badge">
+                    admin
+                </div>
+
+            </div>
+
+
+            <div class="setting">
+
+                <div>
+
+                    <div class="setting-title">
+                        Role
+                    </div>
+
+                    <div class="setting-desc">
+                        Access level
+                    </div>
+
+                </div>
+
+                <div class="badge">
+                    GOD
+                </div>
+
+            </div>
+
+
+            <div class="setting">
+
+                <div>
+
+                    <div class="setting-title">
+                        Expired
+                    </div>
+
+                    <div class="setting-desc">
+                        Account expiration
+                    </div>
+
+                </div>
+
+                <div class="badge">
+                    UNLIMITED
+                </div>
+
+            </div>
+
+
+            <div class="setting">
+
+                <div>
+
+                    <div class="setting-title">
+                        Global Sender
+                    </div>
+
+                    <div class="setting-desc">
+                        Active sender
+                    </div>
+
+                </div>
+
+                <div class="badge">
+                    10
+                </div>
+
+            </div>
+
+
+            <div class="setting">
+
+                <div
+                    class="logout"
+                    onclick="logout()"
+                >
+
+                    <div class="setting-title">
+                        Logout
+                    </div>
+
+                    <div class="setting-desc">
+                        Sign out from panel
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================
+     BOTTOM NAV
+===================== -->
+
+<div class="bottom-nav glass">
+
+    <button
+        class="nav-btn active"
+        onclick="navigate('home',this)"
+    >
+
+        <div class="nav-icon">
+            ⌂
+        </div>
+
+        <div class="nav-label">
+            Home
+        </div>
+
+    </button>
+
+
+    <button
+        class="nav-btn"
+        onclick="navigate('target',this)"
+    >
+
+        <div class="nav-icon">
+            ◎
+        </div>
+
+        <div class="nav-label">
+            Target
+        </div>
+
+    </button>
+
+
+    <button
+        class="nav-btn"
+        onclick="navigate('activity',this)"
+    >
+
+        <div class="nav-icon">
+            ≡
+        </div>
+
+        <div class="nav-label">
+            Activity
+        </div>
+
+    </button>
+
+
+    <button
+        class="nav-btn"
+        onclick="navigate('settings',this)"
+    >
+
+        <div class="nav-icon">
+            ⚙
+        </div>
+
+        <div class="nav-label">
+            Settings
+        </div>
+
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     PROCESS MODAL
+========================= -->
+
+<div id="modalBg" class="modal-bg">
+
+    <div class="modal glass">
+
+        <div class="modal-handle"></div>
+
+
+        <div class="process-top">
+
+            <div
+                id="processIcon"
+                class="process-circle"
+            >
+                ◌
+            </div>
+
+            <div class="process-title">
+                Processing
+            </div>
+
+            <div
+                id="processStatus"
+                class="process-status"
+            >
+                Preparing process...
+            </div>
+
+        </div>
+
+
+        <div class="progress-wrap">
+
+            <div class="progress-info">
+
+                <span>
+                    PROCESS
+                </span>
+
+                <span id="progressText">
+                    0%
+                </span>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    id="progressBar"
+                    class="progress-bar"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="process-info">
+
+            <div class="process-row">
+
+                <span>
+                    Target
+                </span>
+
+                <b id="modalTarget">
+                    -
+                </b>
+
+            </div>
+
+
+            <div class="process-row">
+
+                <span>
+                    Method
+                </span>
+
+                <b id="modalMethod">
+                    -
+                </b>
+
+            </div>
+
+
+            <div class="process-row">
+
+                <span>
+                    Sender
+                </span>
+
+                <b>
+                    10
+                </b>
+
+            </div>
+
+
+            <div class="process-row">
+
+                <span>
+                    Expired
+                </span>
+
+                <b>
+                    UNLIMITED
+                </b>
+
+            </div>
+
+        </div>
+
+
+        <button
+            id="closeModalBtn"
+            class="btn close-modal disabled"
+            onclick="closeModal()"
+        >
+            PROCESSING...
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div id="toast" class="toast">
+    -
+</div>
+
+
+<script>
+
+/* =========================
+   LOGIN
+========================= */
+
+function login(){
+
+    const username =
+        document.getElementById("username").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+    const error =
+        document.getElementById("loginError");
+
+
+    if(username === "admin" && password === "admin"){
+
+        error.style.display = "none";
+
+        document.getElementById("loginPage").style.display = "none";
+
+        document.getElementById("app").style.display = "block";
+
+        showToast("Login berhasil");
+
+        addActivity(
+            "Admin logged in",
+            "Just now",
+            "◉"
+        );
+
+    }else{
+
+        error.style.display = "block";
+
+    }
+
+}
+
+
+/* ENTER LOGIN */
+
+document
+    .getElementById("password")
+    .addEventListener("keydown",function(e){
+
+        if(e.key === "Enter"){
+            login();
+        }
+
+    });
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function navigate(page,element){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(el => el.classList.remove("active"));
+
+
+    document
+        .getElementById(page + "Page")
+        .classList.add("active");
+
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(el => el.classList.remove("active"));
+
+
+    element.classList.add("active");
+
+}
+
+
+/* =========================
+   TARGET FLOW
+========================= */
+
+let selectedMethod = "";
+
+let targetNumber = "";
+
+
+function nextStep(){
+
+    const phone =
+        document
+            .getElementById("phone")
+            .value
+            .replace(/\D/g,"");
+
+
+    if(phone.length < 8){
+
+        showToast("Masukkan nomor yang valid");
+
+        return;
+
+    }
+
+
+    targetNumber = "62" + phone.replace(/^0+/,"");
+
+    document
+        .getElementById("targetPreview")
+        .textContent = "+" + targetNumber;
+
+
+    document
+        .getElementById("step1")
+        .classList.remove("active");
+
+
+    document
+        .getElementById("step2")
+        .classList.add("active");
+
+
+    showToast("Nomor berhasil ditambahkan");
+
+}
+
+
+function backStep(){
+
+    document
+        .getElementById("step2")
+        .classList.remove("active");
+
+
+    document
+        .getElementById("step1")
+        .classList.add("active");
+
+}
+
+
+/* =========================
+   METHOD
+========================= */
+
+function selectMethod(element,method){
+
+    document
+        .querySelectorAll(".method")
+        .forEach(el => el.classList.remove("selected"));
+
+
+    element.classList.add("selected");
+
+    selectedMethod = method;
+
+    showToast(method + " dipilih");
+
+}
+
+
+/* =========================
+   START / SEND
+========================= */
+
+function startProcess(){
+
+    if(!selectedMethod){
+
+        showToast("Pilih metode terlebih dahulu");
+
+        return;
+
+    }
+
+
+    if(!targetNumber){
+
+        showToast("Target belum tersedia");
+
+        return;
+
+    }
+
+
+    openModal();
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+let processRunning = false;
+
+let progress = 0;
+
+let processTimer;
+
+
+function openModal(){
+
+    processRunning = true;
+
+    progress = 0;
+
+
+    const modal =
+        document.getElementById("modalBg");
+
+
+    modal.classList.add("show");
+
+
+    document
+        .getElementById("modalTarget")
+        .textContent =
+        "+" + targetNumber;
+
+
+    document
+        .getElementById("modalMethod")
+        .textContent =
+        selectedMethod;
+
+
+    document
+        .getElementById("progressBar")
+        .style.width = "0%";
+
+
+    document
+        .getElementById("progressText")
+        .textContent = "0%";
+
+
+    document
+        .getElementById("processStatus")
+        .textContent =
+        "Preparing process...";
+
+
+    const closeBtn =
+        document.getElementById("closeModalBtn");
+
+
+    closeBtn.textContent =
+        "PROCESSING...";
+
+
+    closeBtn.classList.add("disabled");
+
+
+    runProcess();
+
+}
+
+
+function runProcess(){
+
+    clearInterval(processTimer);
+
+
+    const statuses = [
+        "Preparing process...",
+        "Initializing...",
+        "Connecting...",
+        "Processing...",
+        "Finalizing..."
+    ];
+
+
+    processTimer =
+        setInterval(function(){
+
+            progress += Math.floor(
+                Math.random() * 9
+            ) + 4;
+
+
+            if(progress > 100){
+                progress = 100;
+            }
+
+
+            document
+                .getElementById("progressBar")
+                .style.width =
+                progress + "%";
+
+
+            document
+                .getElementById("progressText")
+                .textContent =
+                progress + "%";
+
+
+            const index =
+                Math.min(
+                    Math.floor(progress / 20),
+                    statuses.length - 1
+                );
+
+
+            document
+                .getElementById("processStatus")
+                .textContent =
+                statuses[index];
+
+
+            if(progress >= 100){
+
+                clearInterval(processTimer);
+
+                processRunning = false;
+
+                document
+                    .getElementById("processStatus")
+                    .textContent =
+                    "Process completed.";
+
+
+                document
+                    .getElementById("processIcon")
+                    .textContent =
+                    "✓";
+
+
+                const closeBtn =
+                    document
+                        .getElementById("closeModalBtn");
+
+
+                closeBtn.textContent =
+                    "CLOSE";
+
+
+                closeBtn.classList.remove(
+                    "disabled"
+                );
+
+
+                addActivity(
+                    selectedMethod +
+                    " process completed",
+                    "Just now",
+                    "✓"
+                );
+
+            }
+
+        },350);
+
+}
+
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+function closeModal(){
+
+    if(processRunning){
+
+        showToast(
+            "Tunggu proses selesai"
+        );
+
+        return;
+
+    }
+
+
+    document
+        .getElementById("modalBg")
+        .classList.remove("show");
+
+
+    document
+        .getElementById("processIcon")
+        .textContent = "◌";
+
+
+    document
+        .getElementById("step2")
+        .classList.remove("active");
+
+
+    document
+        .getElementById("step1")
+        .classList.add("active");
+
+
+    document
+        .getElementById("phone")
+        .value = "";
+
+
+    document
+        .querySelectorAll(".method")
+        .forEach(el =>
+            el.classList.remove("selected")
+        );
+
+
+    selectedMethod = "";
+
+    targetNumber = "";
+
+}
+
+
+/* =========================
+   ACTIVITY
+========================= */
+
+function addActivity(title,time,icon){
+
+    const list =
+        document.getElementById("activityList");
+
+
+    const item =
+        document.createElement("div");
+
+
+    item.className = "activity";
+
+
+    item.innerHTML = `
+
+        <div class="activity-icon">
+            ${icon}
+        </div>
+
+        <div class="activity-main">
+
+            <div class="activity-title">
+                ${title}
+            </div>
+
+            <div class="activity-time">
+                ${time}
+            </div>
+
+        </div>
+
+    `;
+
+
+    list.prepend(item);
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer;
+
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+
+    clearTimeout(toastTimer);
+
+
+    toastTimer =
+        setTimeout(function(){
+
+            toast.classList.remove("show");
+
+        },2200);
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout(){
+
+    document
+        .getElementById("app")
+        .style.display = "none";
+
+
+    document
+        .getElementById("loginPage")
+        .style.display = "flex";
+
+
+    document
+        .getElementById("username")
+        .value = "";
+
+
+    document
+        .getElementById("password")
+        .value = "";
+
+
+    showToast("Logged out");
+
+}
+
+
+/* =========================
+   PHONE INPUT
+========================= */
+
+document
+    .getElementById("phone")
+    .addEventListener(
+        "input",
+        function(){
+
+            this.value =
+                this.value
+                .replace(/\D/g,"")
+                .replace(/^62/,"")
+                .replace(/^0/,"");
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
